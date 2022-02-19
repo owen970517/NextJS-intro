@@ -22,13 +22,16 @@ export default function Home() {
             <Seo title="Home"></Seo>
             {!movies && <h4>Loading...</h4>}
             {movies?.map((movie)=>(
-                <div onClick={()=> onClick(movie.id ,movie.original_title )} className="movie" key={movie.id}>
+                <div onClick={()=> onClick(movie.id ,movie.original_title , movie.overview )} className="movie" key={movie.id}>
                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
                     <h4> 
                         <Link href={`movies/${movie.original_title}/${movie.id}`}>
                             <a>{movie.original_title} </a>
                         </Link>
                     </h4>
+                    <p> {movie.overview}</p>
+                    <p> 평점 : {movie.vote_average}</p>
+                    <p> 득표수 : {movie.vote_count}</p>
                 </div>
         
                 
