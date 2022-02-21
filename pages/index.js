@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 
 export default function Home() {
     const router = useRouter();
-    const onClick = (id , title)=> {
-        router.push(`/movies/${title}/${id}`);
+    const onClick = (id , title , star , sum )=> {
+        router.push(`/movies/${title}/${id}/${star}/${sum}`);
     };
     const [movies ,setMovies] = useState();
     useEffect(()=>{
@@ -22,7 +22,7 @@ export default function Home() {
             <Seo title="Home"></Seo>
             {!movies && <h4>Loading...</h4>}
             {movies?.map((movie)=>(
-                <div onClick={()=> onClick(movie.id ,movie.original_title , movie.overview )} className="movie" key={movie.id}>
+                <div onClick={()=> onClick(movie.id ,movie.original_title , movie.vote_average , movie.overview)} className="movie" key={movie.id}>
                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
                     <h4> 
                         <Link href={`movies/${movie.original_title}/${movie.id}`}>
