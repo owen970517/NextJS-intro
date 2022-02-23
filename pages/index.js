@@ -13,7 +13,7 @@ export default function Home() {
     };
     const [movies ,setMovies] = useState([]);
     const [filtered , setFiltered] = useState([]);
-    const [activeGenre , setActiveGenre] = useState([]);
+    const [activeGenre , setActiveGenre] = useState(0);
     useEffect(()=>{
        (async()=> {
            const {results} = await ( await fetch(`/api/movies`)).json();

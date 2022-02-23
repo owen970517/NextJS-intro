@@ -6,15 +6,11 @@ export default function about() {
     return (
         <div className="Genres">
             <Seo title ="About"></Seo>
-            <Genres/>
+            <h1>About</h1>
             <style jsx>
                 {`
-                    .Genres {
-                        display : flex;
-                        justify-content : center;
-                        align-items : center;
-                    }
-                    
+    
+
                 `}
             </style>
         </div>

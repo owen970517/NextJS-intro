@@ -10,13 +10,13 @@ export default function Genres({setActiveGenre , activeGenre , setFiltered , mov
             movie.genre_ids.includes(activeGenre)
         );
         setFiltered(filtered);
-    },[activeGenre])
+    }, [activeGenre]);
     return (
         <div className="Genres">
-            <button onClick={()=> setActiveGenre(0) }>All</button>
-            <button onClick={()=> setActiveGenre(28)}>Action</button>
-            <button onClick={()=> setActiveGenre(35)}>Comedy</button>
-            <button onClick={()=> setActiveGenre(80)}>Crime</button>
+            <button className={activeGenre === 0 ? "active" : ""} onClick={()=> setActiveGenre(0) }>All</button>
+            <button className={activeGenre === 28 ? "active" : ""} onClick={()=> setActiveGenre(28)}>Action</button>
+            <button className={activeGenre === 35 ? "active" : ""} onClick={()=> setActiveGenre(35)}>Comedy</button>
+            <button className={activeGenre === 80 ? "active" : ""} onClick={()=> setActiveGenre(80)}>Crime</button>
             <style jsx>
                 {`
                     .Genres {
@@ -29,10 +29,12 @@ export default function Genres({setActiveGenre , activeGenre , setFiltered , mov
                         border-radius : 20px;
                         width : 10%;
                         color :#6ea2fa;
+                        border : none;
                     }
                     button.active {
                         background : #6ea2fa;
-                        color :#000;
+                        color :#fff;
+                        border : none;
                     }
                 
                 `}
