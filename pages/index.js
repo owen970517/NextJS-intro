@@ -4,24 +4,30 @@ import Head from "next/head";
 import Seo from "../components/Seo";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Genres from "../components/Genres";
 
 export default function Home() {
     const router = useRouter();
     const onClick = (id , title , star , sum )=> {
         router.push(`/movies/${title}/${id}/${star}/${sum}`);
     };
-    const [movies ,setMovies] = useState();
+    const [movies ,setMovies] = useState([]);
+    const [filtered , setFiltered] = useState([]);
+    const [activeGenre , setActiveGenre] = useState([]);
     useEffect(()=>{
        (async()=> {
            const {results} = await ( await fetch(`/api/movies`)).json();
            setMovies(results);
+           setFiltered(results);
        })();
     },[]);
     return (
+        <div className="Genres">
+            <Genres movies={movies} setFiltered={setFiltered} activeGenre={activeGenre} setActiveGenre={setActiveGenre}/>
         <div className="container">
             <Seo title="Home"></Seo>
             {!movies && <h4>Loading...</h4>}
-            {movies?.map((movie)=>(
+            {filtered?.map((movie)=>(
                 <div onClick={()=> onClick(movie.id ,movie.original_title , movie.vote_average , movie.overview)} className="movie" key={movie.id}>
                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
                     <h4> 
@@ -64,6 +70,7 @@ export default function Home() {
                 `}
             </style>
         </div>
+    </div>
     );
 }
 
